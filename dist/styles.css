@@ -1,0 +1,20 @@
+#appBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+#banner {
+  text-align: center;
+}
+
+#body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#primary {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+}
