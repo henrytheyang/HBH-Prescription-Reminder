@@ -17,7 +17,9 @@ class Primary extends React.Component {
         name: 'Aspirin',
         daysSupply: 60,
         date: 'May 30',
-        symptoms: 'From AJAX call',
+        symptoms: [
+          'Happiness', 'Sleepiness', 'Grumpiness',
+        ],
       }
     };
   }
@@ -30,8 +32,8 @@ class Primary extends React.Component {
     return (
       <div id='primary'>
         <Input/>
-        <Message patient={this.state.patient} date={this.state.drug.date}/>
-        <DrugReactions/>
+        <Message patient={this.state.patient} date={this.state.drug.date} drug={this.state.drug.name}/>
+        <DrugReactions symptoms={this.state.drug.symptoms}/>
       </div>
     )
   }
