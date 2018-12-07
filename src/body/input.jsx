@@ -5,12 +5,14 @@ function Input(props) {
   return (
     <div id="inputBlock">
       <div class="inputBoxes">
-        <div>First</div>
-        <div>Last</div>
+        <input type="text" name="fullName" onChange={props.handleTextChange}/>
+        <input type="text" name="email"/>
       </div>
       <div class="inputBoxes">
-        <div>Drug</div>
+        {/* <div>Drug</div> */}
+        <input type="text" name="medicineName"/>
         <div>Dropdown</div>
+
       </div>
     </div>
   );

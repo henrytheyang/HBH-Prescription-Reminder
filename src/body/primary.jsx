@@ -9,12 +9,13 @@ class Primary extends React.Component {
     super();
     this.state = {
       patient: {
+        fullName: 'John Smith',
         first: 'John',
         last: 'Smith',
         email: 'johnsmith@email.com',
       },
       drug: {
-        name: 'Aspirin',
+        medicineName: 'Aspirin',
         daysSupply: 60,
         date: 'May 30',
         symptoms: [
@@ -24,6 +25,15 @@ class Primary extends React.Component {
     };
   }
 
+  handleTextChange(event) {
+    // this.setState.
+    console.log('text was inputted');
+  }
+
+  parseName() {
+
+  }
+
   calculateDate() {
     //Calculate date, then setState the date
   }
@@ -31,8 +41,8 @@ class Primary extends React.Component {
   render() {
     return (
       <div id='primary'>
-        <Input/>
-        <Message patient={this.state.patient} date={this.state.drug.date} drug={this.state.drug.name}/>
+        <Input handleTextChange={this.handleTextChange}/>
+        <Message patient={this.state.patient} date={this.state.drug.date} drug={this.state.drug.medicineName}/>
         <DrugReactions symptoms={this.state.drug.symptoms}/>
       </div>
     )
