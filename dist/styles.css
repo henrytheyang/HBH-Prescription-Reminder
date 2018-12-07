@@ -18,3 +18,14 @@
   flex-direction: column;
   justify-content: center;
 }
+
+#inputBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputBoxes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
