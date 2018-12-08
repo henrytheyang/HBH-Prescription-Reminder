@@ -3,7 +3,10 @@ Design notes:
     the code will be more readable than using a bunch of classes
   Not using Redux for state management- mostly because the state-dependant block
     is only 2 levels deep for me to spend the time to set up Redux
-
+  Would usually work on development branches, then do pull requests into main branch
+  Would usually write tests before the design but this layout is boilerplate
+  Choice betwen flattening datashape vs writing multiple inputChange funcs-
+    Chose to flatten data. Only a few points
 
 Design suggestions:
   Make the logo a favicon
