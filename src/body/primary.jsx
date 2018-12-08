@@ -27,6 +27,11 @@ class Primary extends React.Component {
     // Add in enter in any field to click submit
   }
 
+  handleSelect(daysSupply) {
+    console.log(`${daysSupply.value} was selected`);
+    this.setState({daysSupply: daysSupply.value});
+  }
+
   splitNames(string) {
     let names = string.split(' ');
     let first = names[0];
@@ -86,7 +91,7 @@ class Primary extends React.Component {
   render() {
     return (
       <div id='primary'>
-        <Input handleChange={this.handleChange.bind(this)}/>
+        <Input daysSupply={this.state.daysSupply} handleChange={this.handleChange.bind(this)} handleSelect={this.handleSelect.bind(this)}/>
         <Message firstName={this.state.firstName} email={this.state.email} reminderDate={this.state.reminderDate} drugName={this.state.drugName} handleClick={this.handleClick.bind(this)} isSubmitted={this.state.isSubmitted}/>
         <DrugReactions symptoms={this.state.symptoms} isSubmitted={this.state.isSubmitted}/>
       </div>
