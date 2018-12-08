@@ -13,9 +13,9 @@ function Message(props) {
     );
   }
   return (
-    <div>
+    <div id="messageBlock">
       {postSubmission}
-      <button onClick={() => props.handleClick()}>Set Reminder</button>
+      <button id="submitButton" onClick={() => props.handleClick()}>Set Reminder</button>
     </div>
   )
 }
