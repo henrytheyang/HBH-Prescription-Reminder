@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import Input from './input.jsx';
 import Message from './message.jsx';
 import DrugReactions from './drugReactions.jsx';
+import $ from 'jquery';
+
 
 class Primary extends React.Component {
   constructor() {
@@ -13,11 +15,9 @@ class Primary extends React.Component {
       firstName: '',
       email: '',
       drugName: '',
-      daysSupply: 89,
+      daysSupply: 0,
       reminderDate: '',
-      symptoms: [
-        'Happiness', 'Sleepiness', 'Grumpiness',
-      ],
+      symptoms: [],
     };
   }
 
@@ -28,8 +28,7 @@ class Primary extends React.Component {
 
   splitNames(string) {
     let names = string.split(' ');
-    // console.log(`names[0] = ${names[0]}`);
-    let first = ' ' + names[0];
+    let first = names[0];
     this.setState({firstName: first});
   }
 
@@ -37,42 +36,67 @@ class Primary extends React.Component {
     //Calculate date, then setState the date
     // date that is current day plus days supply - 5 days
     let today = Date.now();
-    // console.log(`today = ${today}`);
     // ms * s * min * hr * day
-
-    // Check math- discrepancy when going from 90 to 100 days
     let emailingDay =   1000 * 60 * 60 * 24 * (this.state.daysSupply - 5) + today;
     let stringifiedDate = new Date(emailingDay).toString();
     let arrayEmailingDay = stringifiedDate.split(' ');
     let stringifiedSimplifiedDate = `${arrayEmailingDay[1]} ${arrayEmailingDay[2]}`;
-    console.log(`stringifiedSimplifiedDate = ${stringifiedSimplifiedDate}`);
+    // console.log(`stringifiedSimplifiedDate = ${stringifiedSimplifiedDate}`);
     this.setState({reminderDate: stringifiedSimplifiedDate});
+  }
+
+  fdaCall() {
+    // ajax call for symptoms
+    // this.setState to update symptoms, update isSubmitted
+    if (this.state.patientName === '' || this.state.email === '' || this.state.drugName === '') {
+      alert('Please fill in all input fields');
+    }
+    $.ajax({
+      url: `https://api.fda.gov/drug/event.json?search=patient.drug.openfda.brand_name:${this.state.drugName}`,
+      success: (data) => {
+        console.log(data.results);
+        let reactions = data.results[0].patient.reaction;
+        let flatReactions = [];
+        for (var i = 0; i < reactions.length; i ++) {
+          flatReactions.push(reactions[i].reactionmeddrapt);
+          if (i === 4) {
+            break;
+          }
+        }
+        this.setState({
+          symptoms: flatReactions,
+          isSubmitted: true,
+        });
+      },
+      error: () => {
+        console.log('Ajax call failed');
+        alert('Please enter a valid brand name drug');
+      }
+    });
   }
 
   handleClick() {
     // console.log('button was clicked');
     this.splitNames(this.state.patientName);
-    // ajax call for symptoms
-    // this.setState to update symptoms, update isSubmitted
     this.calculateDate();
-    this.setState({isSubmitted: true});
+    this.fdaCall();
   }
 
   render() {
-    let isSubmitted = this.state.isSubmitted;
-    let postSubmission;
-    if (isSubmitted) {
-      postSubmission =  (
-        <div>
-          <DrugReactions symptoms={this.state.symptoms}/>
-        </div>
-      )
-    }
+    // let isSubmitted = this.state.isSubmitted;
+    // let postSubmission;
+    // if (isSubmitted) {
+    //   postSubmission =  (
+    //     <div>
+    //       <DrugReactions symptoms={this.state.symptoms}/>
+    //     </div>
+    //   )
+    // }
     return (
       <div id='primary'>
         <Input handleChange={this.handleChange.bind(this)}/>
-        <Message firstName={this.state.firstName} email={this.state.email} reminderDate={this.state.reminderDate} drugName={this.state.drugName} handleClick={this.handleClick.bind(this)}/>
-        {postSubmission}
+        <Message firstName={this.state.firstName} email={this.state.email} reminderDate={this.state.reminderDate} drugName={this.state.drugName} handleClick={this.handleClick.bind(this)} isSubmitted={this.state.isSubmitted}/>
+        <DrugReactions symptoms={this.state.symptoms} isSubmitted={this.state.isSubmitted}/>
       </div>
     )
   }
