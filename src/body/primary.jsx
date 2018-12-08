@@ -24,6 +24,7 @@ class Primary extends React.Component {
   handleChange(event) {
     console.log(`${event.target.value} was inputted`);
     this.setState({[event.target.name]: event.target.value});
+    // Add in enter in any field to click submit
   }
 
   splitNames(string) {
@@ -77,21 +78,12 @@ class Primary extends React.Component {
 
   handleClick() {
     // console.log('button was clicked');
-    this.splitNames(this.state.patientName);
     this.calculateDate();
+    this.splitNames(this.state.patientName);
     this.fdaCall();
   }
 
   render() {
-    // let isSubmitted = this.state.isSubmitted;
-    // let postSubmission;
-    // if (isSubmitted) {
-    //   postSubmission =  (
-    //     <div>
-    //       <DrugReactions symptoms={this.state.symptoms}/>
-    //     </div>
-    //   )
-    // }
     return (
       <div id='primary'>
         <Input handleChange={this.handleChange.bind(this)}/>
