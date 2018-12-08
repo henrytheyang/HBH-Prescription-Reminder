@@ -12,7 +12,7 @@ class Primary extends React.Component {
       patientName: '',
       firstName: '',
       email: '',
-      drugName: 'Aspirin',
+      drugName: '',
       daysSupply: 60,
       date: 'May 30',
       symptoms: [
@@ -28,8 +28,8 @@ class Primary extends React.Component {
 
   splitNames(string) {
     let names = string.split(' ');
-    console.log(`${names[0]} was split off`);
-    console.log(`names[0] = ${names[0]}`);
+    // console.log(`${names[0]} was split off`);
+    // console.log(`names[0] = ${names[0]}`);
     let first = ' ' + names[0];
     this.setState({firstName: first});
   }
@@ -39,6 +39,7 @@ class Primary extends React.Component {
     this.splitNames(this.state.patientName);
     // ajax call for symptoms
     // this.setState to update symptoms, update isSubmitted
+    this.setState({isSubmitted: true});
   }
 
   calculateDate() {
@@ -58,7 +59,7 @@ class Primary extends React.Component {
     return (
       <div id='primary'>
         <Input handleTextChange={this.handleTextChange.bind(this)}/>
-        <Message patient={this.state.firstName} email={this.state.email} date={this.state.date} drug={this.state.drugName} handleClick={this.handleClick.bind(this)}/>
+        <Message firstName={this.state.firstName} email={this.state.email} date={this.state.date} drugName={this.state.drugName} handleClick={this.handleClick.bind(this)}/>
         {postSubmission}
       </div>
     )

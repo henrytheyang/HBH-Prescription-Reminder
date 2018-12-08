@@ -10,7 +10,7 @@ function Input(props) {
       </div>
       <div class="inputBoxes">
         {/* <div>Drug</div> */}
-        <input type="text" name="medicineName" onChange={props.handleTextChange}/>
+        <input type="text" name="drugName" onChange={props.handleTextChange}/>
         <div>Dropdown</div>
 
       </div>
