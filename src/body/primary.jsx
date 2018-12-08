@@ -8,30 +8,37 @@ class Primary extends React.Component {
   constructor() {
     super();
     this.state = {
-      patient: {
-        fullName: 'John Smith',
-        first: 'John',
-        last: 'Smith',
-        email: 'johnsmith@email.com',
-      },
-      drug: {
-        medicineName: 'Aspirin',
-        daysSupply: 60,
-        date: 'May 30',
-        symptoms: [
-          'Happiness', 'Sleepiness', 'Grumpiness',
-        ],
-      }
+      isSubmitted: false,
+      patientName: '',
+      firstName: '',
+      email: '',
+      drugName: 'Aspirin',
+      daysSupply: 60,
+      date: 'May 30',
+      symptoms: [
+        'Happiness', 'Sleepiness', 'Grumpiness',
+      ],
     };
   }
 
   handleTextChange(event) {
-    // this.setState.
-    console.log('text was inputted');
+    console.log(`${event.target.value} was inputted`);
+    this.setState({[event.target.name]: event.target.value});
   }
 
-  parseName() {
+  splitNames(string) {
+    let names = string.split(' ');
+    console.log(`${names[0]} was split off`);
+    console.log(`names[0] = ${names[0]}`);
+    let first = ' ' + names[0];
+    this.setState({firstName: first});
+  }
 
+  handleClick() {
+    console.log('button was clicked');
+    this.splitNames(this.state.patientName);
+    // ajax call for symptoms
+    // this.setState to update symptoms, update isSubmitted
   }
 
   calculateDate() {
@@ -39,11 +46,20 @@ class Primary extends React.Component {
   }
 
   render() {
+    let isSubmitted = this.state.isSubmitted;
+    let postSubmission;
+    if (isSubmitted) {
+      postSubmission =  (
+        <div>
+          <DrugReactions symptoms={this.state.symptoms}/>
+        </div>
+      )
+    }
     return (
       <div id='primary'>
-        <Input handleTextChange={this.handleTextChange}/>
-        <Message patient={this.state.patient} date={this.state.drug.date} drug={this.state.drug.medicineName}/>
-        <DrugReactions symptoms={this.state.drug.symptoms}/>
+        <Input handleTextChange={this.handleTextChange.bind(this)}/>
+        <Message patient={this.state.firstName} email={this.state.email} date={this.state.date} drug={this.state.drugName} handleClick={this.handleClick.bind(this)}/>
+        {postSubmission}
       </div>
     )
   }
