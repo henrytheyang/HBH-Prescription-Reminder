@@ -43,6 +43,10 @@
   /* border-width: 2px; */
 }
 
+.postSubmission {
+  margin: 50px
+}
+
 #messageBlock {
   display: flex;
   flex-direction: column;

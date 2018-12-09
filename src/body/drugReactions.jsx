@@ -6,7 +6,7 @@ function DrugReactions(props) {
   let postSubmission;
   if (isSubmitted) {
     postSubmission = (
-      <div>
+      <div class="postSubmission">
         <div>As a service, here are the possible drug reactions you should contact your doctor if you're experiencing:</div>
         {props.symptoms.map(item => (
             <div>*{item}</div>

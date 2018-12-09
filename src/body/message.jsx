@@ -6,7 +6,7 @@ function Message(props) {
   let postSubmission;
   if (isSubmitted) {
     postSubmission = (
-      <div>
+      <div class="postSubmission">
         <div>Hi {props.firstName}!</div>
         <div>Thanks for signing up for a reminder for {props.drugName}. We'll send it to {props.email} on {props.reminderDate} to give you a little notice.</div>
       </div>
