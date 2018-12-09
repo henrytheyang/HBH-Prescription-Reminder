@@ -9,15 +9,25 @@ import $ from 'jquery';
 class Primary extends React.Component {
   constructor() {
     super();
+    const options = [
+      {value: 30, label: 30},
+      {value: 60, label: 60},
+      {value: 90, label: 90},
+      {value: 100, label: 100},
+      {value: 120, label: 120},
+    ];
+    let medianOptionIndex = Math.floor(options.length/2);
+    let defaultValue = options[medianOptionIndex].value;
     this.state = {
       isSubmitted: false,
       patientName: '',
       firstName: '',
       email: '',
       drugName: '',
-      daysSupply: 0,
+      daysSupply: defaultValue,
       reminderDate: '',
       symptoms: [],
+      options: options,
     };
   }
 
@@ -82,7 +92,6 @@ class Primary extends React.Component {
   }
 
   handleClick() {
-    // console.log('button was clicked');
     this.calculateDate();
     this.splitNames(this.state.patientName);
     this.fdaCall();
@@ -91,7 +100,7 @@ class Primary extends React.Component {
   render() {
     return (
       <div id='primary'>
-        <Input daysSupply={this.state.daysSupply} handleChange={this.handleChange.bind(this)} handleSelect={this.handleSelect.bind(this)}/>
+        <Input daysSupply={this.state.daysSupply} options={this.state.options} handleChange={this.handleChange.bind(this)} handleSelect={this.handleSelect.bind(this)}/>
         <Message firstName={this.state.firstName} email={this.state.email} reminderDate={this.state.reminderDate} drugName={this.state.drugName} handleClick={this.handleClick.bind(this)} isSubmitted={this.state.isSubmitted}/>
         <DrugReactions symptoms={this.state.symptoms} isSubmitted={this.state.isSubmitted}/>
       </div>

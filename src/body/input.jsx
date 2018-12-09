@@ -2,29 +2,42 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Select from 'react-select';
 
-const options = [
-  {value: 30, label: 30},
-  {value: 60, label: 60},
-  {value: 90, label: 90},
-  {value: 100, label: 100},
-  {value: 120, label: 120},
-];
+
+// const customStyles = {
+//   menu: (provided) => ({
+//     ...provided,
+//     width: 122.8
+//   }),
+//   container: (provided) => ({
+//     ...provided,
+//     width: 122.8
+//   })
+// }
 
 function Input(props) {
   let {daysSupply} = props.daysSupply;
+  const options = props.options;
   return (
     <div id="inputBlock">
-      <div class="inputBoxes">
-        <input type="text" name="patientName" onChange={props.handleChange} placeholder="Full Name"/>
-        <input type="text" name="email" onChange={props.handleChange} placeholder="Email"/>
+      <div class="inputRow">
+        <input type="text" name="patientName" class="inputField" onChange={props.handleChange} placeholder="Full Name"/>
+        <input type="text" name="email" class="inputField" onChange={props.handleChange} placeholder="Email"/>
       </div>
-      <div class="inputBoxes">
-        <input type="text" name="drugName" onChange={props.handleChange} placeholder="Medicine Name"/>
+      <div class="inputRow">
+        <input type="text" name="drugName" class="inputField" onChange={props.handleChange} placeholder="Medicine Name"/>
         <Select
-          value={daysSupply}
-          onChange={props.handleSelect}
-          options={options}
-          placeholder='Days supply of Rx'
+          className="inputField"
+          components={
+            {
+              IndicatorSeparator: () => null
+            }
+          }
+          // value = {daysSupply}
+          // value = {defaultValue}
+          onChange = {props.handleSelect}
+          options = {options}
+          // styles = {customStyles}
+          placeholder = 'Days supply of Rx'
         />
         {/* <select name="daysSupply" onChange={props.handleChange} placeholder = "Days supply of Rx">
           <option value="30">30</option>
