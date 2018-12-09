@@ -32,9 +32,8 @@ class Primary extends React.Component {
   }
 
   handleChange(event) {
-    console.log(`${event.target.value} was inputted`);
+    // console.log(`${event.target.value} was inputted`);
     this.setState({[event.target.name]: event.target.value});
-    // Add in enter in any field to click submit
   }
 
   handleSelect(daysSupply) {
@@ -70,7 +69,7 @@ class Primary extends React.Component {
     $.ajax({
       url: `https://api.fda.gov/drug/event.json?search=patient.drug.openfda.brand_name:${this.state.drugName}`,
       success: (data) => {
-        console.log(data.results);
+        // console.log(data.results);
         let reactions = data.results[0].patient.reaction;
         let flatReactions = [];
         for (var i = 0; i < reactions.length; i ++) {
@@ -97,10 +96,16 @@ class Primary extends React.Component {
     this.fdaCall();
   }
 
+  handleEnterPress(event) {
+    if (event.key == 'Enter') {
+      this.handleClick();
+    }
+  }
+
   render() {
     return (
       <div id='primary'>
-        <Input daysSupply={this.state.daysSupply} options={this.state.options} handleChange={this.handleChange.bind(this)} handleSelect={this.handleSelect.bind(this)}/>
+        <Input daysSupply={this.state.daysSupply} options={this.state.options} handleChange={this.handleChange.bind(this)} handleSelect={this.handleSelect.bind(this)} handleEnterPress={this.handleEnterPress.bind(this)}/>
         <Message firstName={this.state.firstName} email={this.state.email} reminderDate={this.state.reminderDate} drugName={this.state.drugName} handleClick={this.handleClick.bind(this)} isSubmitted={this.state.isSubmitted}/>
         <DrugReactions symptoms={this.state.symptoms} isSubmitted={this.state.isSubmitted}/>
       </div>

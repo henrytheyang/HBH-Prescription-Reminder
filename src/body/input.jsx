@@ -7,13 +7,11 @@ const customStyles = {
   menu: (provided) => ({
     ...provided,
     width: 180,
-    boxShadow: 20,
     fontSize: 14,
   }),
   container: (provided) => ({
     ...provided,
     width: 180,
-    boxShadow: 20,
     fontSize: 14,
   })
 }
@@ -24,11 +22,11 @@ function Input(props) {
   return (
     <div id="inputBlock">
       <div class="inputRow">
-        <input type="text" name="patientName" class="inputField" onChange={props.handleChange} placeholder="Full Name"/>
-        <input type="text" name="email" class="inputField" onChange={props.handleChange} placeholder="Email"/>
+        <input type="text" name="patientName" class="inputField" onChange={props.handleChange} placeholder="Full Name" onKeyPress={props.handleEnterPress}/>
+        <input type="text" name="email" class="inputField" onChange={props.handleChange} placeholder="Email" onKeyPress={props.handleEnterPress}/>
       </div>
       <div class="inputRow">
-        <input type="text" name="drugName" class="inputField" onChange={props.handleChange} placeholder="Medicine Name"/>
+        <input type="text" name="drugName" class="inputField" onChange={props.handleChange} placeholder="Medicine Name" onKeyPress={props.handleEnterPress}/>
         <div id="selectField">          
           <Select
             // className="inputField"
@@ -45,13 +43,6 @@ function Input(props) {
             placeholder = 'Days supply of Rx'
           />
         </div>
-        {/* <select name="daysSupply" onChange={props.handleChange} placeholder = "Days supply of Rx">
-          <option value="30">30</option>
-          <option value="60">60</option>
-          <option value="90" selected>90</option>
-          <option value="100">100</option>
-          <option value="120">120</option>
-        </select> */}
       </div>
     </div>
   );
