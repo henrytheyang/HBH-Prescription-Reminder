@@ -1,18 +1,17 @@
 Design notes:
-  Going with a lot of id in css, not class- not ideal, but so few objects that
-    the code will be more readable than using a bunch of classes
   Not using Redux for state management- mostly because the state-dependant block
-    is only 2 levels deep for me to spend the time to set up Redux
+    is only 2 levels deep, too shallow to spend the time to set up Redux
   Would usually work on development branches, then do pull requests into main branch
   Would usually write tests before the design but this layout is boilerplate
-  Choice betwen flattening datashape vs writing multiple inputChange funcs-
-    Chose to flatten data. Only a few points
+  Hid text blocks until after submit was clicked- cleaner look.
 
 Design suggestions:
   Make the logo a favicon
-  Instead of large logo to right, a large transparent/faded background logo?
+  Press enter in any field to trigger submit
 
-  Links on bottom- contact, my account, link to FDA page of drug?
+  Move submit button above text blocks
+  Instead of large logo to right, a large transparent/faded background logo?
+  Links on bottom- honeybee contact, my account, link to FDA page of drug?
   Links to two commonly co-purchased drugs, with next/prev buttons for a carousel
 
   Consider requiring patient to be signed in, then auto-load name, email, Rx
@@ -21,4 +20,5 @@ Mobile-first concerns-
   Larger buttons
   Expandable content
   NO hover
+  Width considerations
   
