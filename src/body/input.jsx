@@ -3,16 +3,20 @@ import ReactDOM from 'react-dom';
 import Select from 'react-select';
 
 
-// const customStyles = {
-//   menu: (provided) => ({
-//     ...provided,
-//     width: 122.8
-//   }),
-//   container: (provided) => ({
-//     ...provided,
-//     width: 122.8
-//   })
-// }
+const customStyles = {
+  menu: (provided) => ({
+    ...provided,
+    width: 180,
+    boxShadow: 20,
+    fontSize: 14,
+  }),
+  container: (provided) => ({
+    ...provided,
+    width: 180,
+    boxShadow: 20,
+    fontSize: 14,
+  })
+}
 
 function Input(props) {
   let {daysSupply} = props.daysSupply;
@@ -25,20 +29,22 @@ function Input(props) {
       </div>
       <div class="inputRow">
         <input type="text" name="drugName" class="inputField" onChange={props.handleChange} placeholder="Medicine Name"/>
-        <Select
-          className="inputField"
-          components={
-            {
-              IndicatorSeparator: () => null
+        <div id="selectField">          
+          <Select
+            // className="inputField"
+            components={
+              {
+                IndicatorSeparator: () => null
+              }
             }
-          }
-          // value = {daysSupply}
-          // value = {defaultValue}
-          onChange = {props.handleSelect}
-          options = {options}
-          // styles = {customStyles}
-          placeholder = 'Days supply of Rx'
-        />
+            // value = {daysSupply}
+            // value = {defaultValue}
+            onChange = {props.handleSelect}
+            options = {options}
+            styles = {customStyles}
+            placeholder = 'Days supply of Rx'
+          />
+        </div>
         {/* <select name="daysSupply" onChange={props.handleChange} placeholder = "Days supply of Rx">
           <option value="30">30</option>
           <option value="60">60</option>

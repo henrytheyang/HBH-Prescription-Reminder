@@ -28,19 +28,24 @@
 .inputRow {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-evenly; */
+  justify-content: space-evenly;
   align-items: center;
   height: 90px;
 }
 
 .inputField {
-  width: 155px;
-  flex-grow: 1;
+  width: 156px;
   padding: 10px;
   margin: 30px;
   font-size: 14px;
   border-radius: 5px;
-  /* border-width: 2px; */
+}
+
+#selectField {
+  width: 180px;
+  padding: 10px;
+  margin: 30px;
+  /* border: 2px */
 }
 
 .postSubmission {
