@@ -17,6 +17,7 @@
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
+  width: 500px;
 }
 
 #inputBlock {
@@ -24,14 +25,40 @@
   flex-direction: column;
 }
 
-.inputBoxes {
+.inputRow {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
+  align-items: center;
+  height: 90px;
+}
+
+.inputField {
+  width: 155px;
+  flex-grow: 1;
+  padding: 10px;
+  margin: 30px;
+  font-size: 14px;
+  border-radius: 5px;
+  /* border-width: 2px; */
 }
 
 #messageBlock {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* #buttonBlock {
+  width: 300px;
+  height: 150px;
+} */
+
+#submitButton {
+  width: 160px;
+  height: 45px;
+  background-color: #4593E6;
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
 }
